@@ -10,11 +10,11 @@
 ## Milestone 1: Core UX Polish
 **Goal:** Make the existing features feel complete and reliable.
 
-- [ ] Add edit functionality for existing schedule items
-- [ ] Add input validation (prevent empty titles, past-date warnings)
-- [ ] Improve list UI with section headers grouped by date
-- [ ] Add empty state view when no items exist
-- [ ] Support dark mode
+- [x] Add edit functionality for existing schedule items
+- [x] Add input validation (prevent empty titles, past-date warnings)
+- [x] Improve list UI with section headers grouped by date
+- [x] Add empty state view when no items exist
+- [x] Support dark mode
 
 ---
 

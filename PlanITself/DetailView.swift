@@ -1,38 +1,45 @@
 import SwiftUI
 
 struct DetailView: View {
-    var item: MyItem
+    @ObservedObject var item: MyItem
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             if let title = item.title {
                 Text(title)
-                    .font(.largeTitle) // 제목을 크게
+                    .font(.largeTitle)
                     .padding(.bottom, 4)
             }
-            
+
             if let timestamp = item.timestamp {
                 Text("날짜: \(timestamp, formatter: itemFormatter)")
-                    .font(.subheadline) // 날짜와 시간을 작게
-                    .foregroundColor(.gray) // 회색으로 표시
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
             }
-            
-            if let description = item.descriptionText {
+
+            if let description = item.descriptionText, !description.isEmpty {
                 Text(description)
-                    .font(.body) // 설명을 기본 크기로
+                    .font(.body)
             }
+
+            Spacer()
         }
         .padding()
         .navigationTitle("상세 보기")
-        .navigationBarTitleDisplayMode(.inline) // 네비게이션 바에 타이틀 디스플레이 모드
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: AddScheduleView(editingItem: item)) {
+                    Text("수정")
+                }
+            }
+        }
     }
 }
 
-// 날짜 포맷터 정의
 private let itemFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateStyle = .short
     formatter.timeStyle = .medium
     return formatter
 }()
-
